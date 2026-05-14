@@ -14,7 +14,14 @@
             </td>
         </xpath>
         <!-- End add column amount total on line -->
+        <!-- En v19 existen tres divs partner_vat separados (uno por variante de dirección) -->
         <xpath expr="//div[@id='partner_vat_address_same_as_shipping']//t[@id='inv_tax_id_label']" position="replace">
+            <t id="inv_tax_id_label" t-if="o.partner_id.l10n_latam_identification_type_id" t-out="o.partner_id.l10n_latam_identification_type_id.name"></t>
+        </xpath>
+        <xpath expr="//div[@id='partner_vat_address_not_same_as_shipping']//t[@id='inv_tax_id_label']" position="replace">
+            <t id="inv_tax_id_label" t-if="o.partner_id.l10n_latam_identification_type_id" t-out="o.partner_id.l10n_latam_identification_type_id.name"></t>
+        </xpath>
+        <xpath expr="//div[@id='partner_vat_no_shipping']//t[@id='inv_tax_id_label']" position="replace">
             <t id="inv_tax_id_label" t-if="o.partner_id.l10n_latam_identification_type_id" t-out="o.partner_id.l10n_latam_identification_type_id.name"></t>
         </xpath>
         <xpath expr="//t[@t-set='layout_document_title']" position="before">
@@ -47,10 +54,11 @@
                 <t t-if="o.partner_id.email">Email: <span t-field="o.partner_id.email"></span></t>
             </div>
         </xpath>
-        <xpath expr="//t[@t-set='layout_document_title']/span[contains(@t-if, 'out_invoice') and contains(@t-if, 'posted')]" position="attributes">
+        <!-- En v19 los spans de tipo DTE están anidados dentro de <t t-if="not proforma"> -->
+        <xpath expr="//t[@t-set='layout_document_title']/t[@t-if='not proforma']/span[contains(@t-if, 'out_invoice') and contains(@t-if, 'posted')]" position="attributes">
             <attribute name="t-out">o.l10n_latam_document_type_id.report_name</attribute>
         </xpath>
-        <xpath expr="//t[@t-set='layout_document_title']/span[contains(@t-elif, 'out_refund') and contains(@t-elif, 'posted')]" position="attributes">
+        <xpath expr="//t[@t-set='layout_document_title']/t[@t-if='not proforma']/span[contains(@t-elif, 'out_refund') and contains(@t-elif, 'posted')]" position="attributes">
             <attribute name="t-out">o.l10n_latam_document_type_id.report_name</attribute>
         </xpath>
         <xpath expr="//t[@t-set='layout_document_title']/span[@t-field='o.name']" position="replace">
