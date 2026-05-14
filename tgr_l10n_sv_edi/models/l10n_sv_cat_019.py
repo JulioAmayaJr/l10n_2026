@@ -17,9 +17,3 @@ class L10nSvCat019(models.Model):
     def _compute_display_name(self):
         for rec in self:
             rec.display_name = f"[{rec.code}] {rec.name}"
-
-    def name_get(self):
-        result = []
-        for rec in self:
-            result.append((rec.id, f"[{rec.code}] {rec.name}"))
-        return result

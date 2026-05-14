@@ -1,5 +1,4 @@
 from odoo import fields, models
-from odoo.api import readonly
 
 
 class ResCompany(models.Model):

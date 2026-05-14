@@ -15,7 +15,6 @@ patch(PosOrder.prototype, {
     if (!this.isSalvadorianCompany()) {
       return result;
     }
-    console.log("this", this);
     return {
       ...result,
       tgr_l10n_sv_edi_codigo_generacion:

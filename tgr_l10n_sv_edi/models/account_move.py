@@ -245,5 +245,4 @@ class AccountMove(models.Model):
         # )
         if json_dict.get("documentoRelacionado"):
             res["documentoRelacionado"] = json_dict.get("documentoRelacionado")
-        print("extra_report_values", res)
         return res

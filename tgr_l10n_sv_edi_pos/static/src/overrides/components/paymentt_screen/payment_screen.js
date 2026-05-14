@@ -31,11 +31,10 @@ patch(PaymentScreen.prototype, {
 
   onDocumentTypeChange(ev) {
     const selectCode = ev.target.value;
-    order = this.currentOrder;
+    const order = this.currentOrder;
     this.state.l10n_latam_document_type_code = selectCode;
     order.l10n_latam_document_type_code =
       this.state.l10n_latam_document_type_code;
-    console.log(this.state.l10n_latam_document_type_code);
   },
   areSvFieldsVisible() {
     return (

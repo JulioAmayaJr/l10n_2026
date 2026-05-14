@@ -1,6 +1,6 @@
 {
     "name": "Facturación electrónica para El Salvador",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "summary": """
     Facturación electrónica para El Salvador (Metodo API externa)
      """,

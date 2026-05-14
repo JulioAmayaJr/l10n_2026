@@ -18,7 +18,6 @@ patch(InvoiceButton.prototype, {
       await this.pos.data.ormWrite("pos.order", [order.id], {
         l10n_latam_document_type_code: order.l10n_latam_document_type,
       });
-      console.log(payload);
     }
     return Boolean(payload);
   },

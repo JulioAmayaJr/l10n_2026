@@ -1,4 +1,3 @@
-from lxml.html import copy
 from odoo import _, models, fields
 from odoo.addons.tgr_l10n_sv_edi.models.account_move import CAT_024_TIPO_INVAlIDACION
 from odoo.exceptions import UserError

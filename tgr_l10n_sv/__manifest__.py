@@ -1,6 +1,6 @@
 {
     "name": "Localización El Salvador",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "summary": """
     Este módulo contiene la localización de El Salvador,
     con el fin de adaptar Odoo a las necesidades legales de este país.

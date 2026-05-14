@@ -110,7 +110,6 @@ class MixinDteDocument(models.AbstractModel):
         tributos = []
         iva_rete1 = 0.00
         for tax_key, tax_data in values["tax_details_grouped"]["tax_details"].items():
-            print(tax_data)
             if tax_key["l10n_sv_edi_code"] == "IVA":
                 total_gravada += tax_data["base_amount_currency"]
             if tax_key["l10n_sv_edi_code"] == "IVA_RETE":
