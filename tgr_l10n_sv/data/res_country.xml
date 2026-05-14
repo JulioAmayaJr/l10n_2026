@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- Agregar El Salvador al grupo LATAMID para que l10n_latam_base
+         muestre el selector de tipo de identificación (NIT, DUI, etc.) -->
+    <record id="l10n_latam_base.latam" model="res.country.group">
+        <field name="country_ids" eval="[Command.link(ref('base.sv'))]"/>
+    </record>
+
     <record id="base.sv" model="res.country">
         <field name="enforce_cities" eval="1" />
         <field name="currency_id" ref="base.USD" />
