@@ -1,4 +1,4 @@
-id,name,description,amount_type,invoice_label,l10n_sv_edi_tax_code,amount,type_tax_use,sequence,include_base_amount,tax_group_id,price_include_override,include_base_amount,is_base_affected,repartition_line_ids/repartition_type,repartition_line_ids/document_type,repartition_line_ids/account_id,repartition_line_ids/factor_percent,"""description""@es"
+id,name,description,amount_type,invoice_label,l10n_sv_edi_tax_code,amount,type_tax_use,sequence,include_base_amount,tax_group_id,price_include_override,include_base_amount,is_base_affected,repartition_line_ids/repartition_type,repartition_line_ids/document_type,repartition_line_ids/account_id,repartition_line_ids/factor_percent,"""description""@es",fiscal_position_ids,original_tax_ids
 sale_tax_iva_13,13%,,percent,13% IVA,20,13,sale,1,1,tax-group_iva,tax_excluded,1,1,base,invoice,,,13% 
 ,,,,,,,,,,,,,,tax,invoice,char210501,,
 ,,,,,,,,,,,,,,base,refund,,,
@@ -15,7 +15,7 @@ sale_tax_iva_non_taxable,0% NO SUJ,,percent,0% NO SUJETA,,0,sale,1,1,tax_group_i
 ,,,,,,,,,,,,,,tax,invoice,char210501,,
 ,,,,,,,,,,,,,,base,refund,,,
 ,,,,,,,,,,,,,,tax,refund,char210501,,
-sale_tax_exp,0% EXP,,percent,0% EXP,C3,0,sale,1,1,tax_group_iva_export,tax_excluded,1,1,base,invoice,,,0% EXP
+sale_tax_exp,0% EXP,,percent,0% EXP,C3,0,sale,1,1,tax_group_iva_export,tax_excluded,1,1,base,invoice,,,0% EXP,exportation,"sale_tax_iva_13,sale_tax_iva_13_included"
 ,,,,,,,,,,,,,,tax,invoice,char210501,,
 ,,,,,,,,,,,,,,base,refund,,,
 ,,,,,,,,,,,,,,tax,refund,char210501,,
