@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat /opt/mundo-toys-dev/odoo-server/addons/account/views/report_invoice.xml)",
+      "Read(//opt/mundo-toys-dev/odoo-server/addons/account/views/**)",
+      "Bash(find /opt/mundo-toys-dev -name \"report_invoice.xml\" 2>/dev/null | head -20)",
+      "Read(//opt/**)",
+      "Bash(ls /opt/ 2>/dev/null; ls /opt/mundo-toys-dev/ 2>/dev/null; echo \"---\"; find / -maxdepth 6 -name \"report_invoice.xml\" -path \"*/account/*\" 2>/dev/null | head -20)",
+      "Read(//c//**)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api *)"
+    ]
+  }
+}

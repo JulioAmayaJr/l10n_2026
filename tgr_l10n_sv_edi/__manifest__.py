@@ -6,7 +6,7 @@
      """,
     "countries": ["sv"],
     "category": "Accounting/Localizations/EDI",
-    "author": "Juan D. Collado Vasquez",
+    "author": "Julio Amaya",
     "website": "https://tagre.pe",
     "depends": [
         "tgr_l10n_sv",

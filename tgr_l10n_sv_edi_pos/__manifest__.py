@@ -3,7 +3,7 @@
     "name": "Facturación Electrónica pala El Salvador POS",
     "version": "19.0.1.0.0",
     "category": "Accounting/Localizations/Point of Sale",
-    "author": "Juan D. Collado Vasquez",
+    "author": "Julio Amaya",
     "countries": ["sv"],
     "description": """
     "website": "https://tagre.pe",
