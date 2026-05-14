@@ -1,8 +1,8 @@
 import uuid
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from odoo import api, models
-from pytz import timezone
 
 
 class DteAnulacion(models.AbstractModel):
@@ -27,8 +27,8 @@ class DteAnulacion(models.AbstractModel):
             "version": self._version,
             "ambiente": "01" if credentials["environment"] == "prod" else "00",
             "codigoGeneracion": str(uuid.uuid4()).upper(),
-            "fecAnula": datetime.now(tz=timezone("America/El_Salvador")).strftime("%Y-%m-%d"),
-            "horAnula": datetime.now(tz=timezone("America/El_Salvador")).strftime("%H:%M:%S"),
+            "fecAnula": datetime.now(tz=ZoneInfo("America/El_Salvador")).strftime("%Y-%m-%d"),
+            "horAnula": datetime.now(tz=ZoneInfo("America/El_Salvador")).strftime("%H:%M:%S"),
         }
 
     def _get_emisor(self, invoice):

@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from datetime import datetime
 from decimal import ROUND_HALF_UP, Decimal
@@ -6,6 +7,14 @@ from zoneinfo import ZoneInfo
 
 from odoo import models
 from odoo.tools import config, float_is_zero, float_round
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from jsonschema import SchemaError, ValidationError, validate
+except ImportError:
+    validate = ValidationError = SchemaError = None
+    _logger.warning("jsonschema no instalado: validación de esquema no disponible")
 
 TIPO_DTE_MAPPING = {
     "01": "01",  # Factura
@@ -15,7 +24,7 @@ TIPO_DTE_MAPPING = {
     "14": "14",  # Factura Sujeto Excluido
 }
 
-CAT_11_MAPPING = {"consu": 1, "product": 1, "service": 2}
+CAT_11_MAPPING = {"consu": 1, "service": 2}
 
 TAX_GROUP = {
     "IVA": 0,
@@ -370,7 +379,7 @@ class AccountEdiJsonDTESV(models.AbstractModel):
 
         # Tax Details
         def grouping_key_generator(base_line, tax_values):
-            tax = tax_values["tax_repartition_line"].tax_id
+            tax = tax_values["tax"]
             return {
                 "l10n_sv_edi_code": tax.tax_group_id.l10n_sv_edi_code,
                 "l10n_sv_edi_tax_code": tax.l10n_sv_edi_tax_code,
@@ -386,29 +395,30 @@ class AccountEdiJsonDTESV(models.AbstractModel):
 
     def _export_invoice_vals(self, invoice, credentials):
         vals = self._get_common_vals(invoice, credentials)
-        print(json.dumps(vals, indent=2, ensure_ascii=False))
+        _logger.debug(json.dumps(vals, indent=2, ensure_ascii=False))
         self._validate_json(vals, "fe-ccf-v3")
         return vals
 
     def _validate_json(self, json_data, schema_name):
+        if validate is None:
+            _logger.warning("jsonschema no disponible, omitiendo validación de esquema")
+            return
+
         def _load_scheme(schema_name):
-
-            # module_path = os.path.dirname(os.path.abspath(__file__))
             module_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
             file_path = "%s/data/svfe-json-schemas/%s.json" % (module_path, schema_name)
             try:
                 with open(file_path, "r") as file:
                     return json.load(file)
             except Exception as e:
-                print("Error en cargar el schema: %s \n %s" % (file_path, str(e)))
+                _logger.error("Error al cargar el schema: %s \n %s", file_path, str(e))
 
         try:
             validate(instance=json_data, schema=_load_scheme(schema_name))
-            print("El json es valido segun el schema")
+            _logger.debug("El JSON es válido según el schema")
         except ValidationError as e:
-            print(f"Error de validación en '{'.'.join(map(str, e.path))}': {e.message}")
+            _logger.warning("Error de validación en '%s': %s", ".".join(map(str, e.path)), e.message)
         except SchemaError as e:
-            print(f"Error de validación en '{'.'.join(map(str, e.path))}': {e.message}")
+            _logger.error("Error de schema en '%s': %s", ".".join(map(str, e.path)), e.message)
         except Exception as e:
-            print("Error de inesperado : %s" % (e))
+            _logger.error("Error inesperado en validación: %s", e)

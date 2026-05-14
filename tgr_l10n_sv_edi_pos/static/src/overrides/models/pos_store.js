@@ -34,7 +34,6 @@ patch(PosStore.prototype, {
   async addL10nSvEdiFields(order) {
     const payload = await makeAwaitable(this.dialog, AddInfoPopup, { order });
     if (payload) {
-      console.log("payload", payload);
       order.l10n_latam_document_type_code = payload.l10n_latam_document_type;
       return true;
     }
@@ -45,12 +44,11 @@ patch(PosStore.prototype, {
     if (!this.isSalvadorianCompany() || !order) {
       return result;
     }
-    console.log("this", this);
     result.company.sv_vat = this.company.vat;
     result.receipt_header = this.config.l10n_sv_edi_receipt_header;
     result.partner = order.get_partner();
     result.sv_doc_type = order.l10n_latam_document_type_code;
-    console.log("result", result);
     return result;
   },
 });
+

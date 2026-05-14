@@ -14,7 +14,6 @@ class TgrL10nSvCancelWizard(models.TransientModel):
     def button_cancel(self):
         self.ensure_one()
         moves = self.env["account.move"].browse(self._context.get("active_ids"))
-        print(moves.name)
         moves.tgr_l10n_sv_edi_tipo_invalidacion = self.tgr_l10n_sv_edi_tipo_invalidacion
         moves.tgr_l10n_sv_edi_motivo_invalidacion = (
             self.tgr_l10n_sv_edi_motivo_invalidacion.strip() if self.tgr_l10n_sv_edi_motivo_invalidacion else False

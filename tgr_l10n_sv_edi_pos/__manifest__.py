@@ -1,7 +1,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     "name": "Facturación Electrónica pala El Salvador POS",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "category": "Accounting/Localizations/Point of Sale",
     "author": "Juan D. Collado Vasquez",
     "countries": ["sv"],

@@ -32,7 +32,7 @@ class ResPartner(models.Model):
             self.zip = self.l10n_sv_district.code
 
     @api.onchange("city_id")
-    def _onchange_l10n_sv_district(self):
+    def _onchange_city_id_sv(self):
         if (
             self.city_id
             and self.l10n_sv_district.city_id
